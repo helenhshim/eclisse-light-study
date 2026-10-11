@@ -1,0 +1,28 @@
+{
+  "name": "eclisse-light-study",
+  "version": "1.0.0",
+  "private": true,
+  "description": "An interactive photographic study of the Eclisse lamp by Helen Shim.",
+  "scripts": {
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "check": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "dependencies": {
+    "next": "16.2.3",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "@types/node": "20.19.39",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "eslint": "9.39.4",
+    "eslint-config-next": "16.2.3"
+  }
+}

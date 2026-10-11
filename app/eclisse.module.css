@@ -1,0 +1,88 @@
+.scene {
+  position: relative;
+  width: 100%;
+  min-height: 100svh;
+  overflow: hidden;
+  background: #211c19;
+  color-scheme: dark;
+}
+
+.stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100svh;
+  min-height: 320px;
+  --lamp-size: min(550px, 86vw, 76svh);
+  --light-opacity: .5;
+  --spill-x: 55px;
+  --spill-width: .95;
+  isolation: isolate;
+  background: #211c19;
+}
+
+/* Both light layers sit behind the unchanged photograph and accept no input. */
+.stage::before,
+.stage::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  opacity: var(--light-opacity);
+}
+
+.stage::before {
+  inset: 0;
+  background:
+    radial-gradient(ellipse at calc(50% + var(--spill-x)) calc(50% - var(--lamp-size) * .12), rgba(238, 146, 60, .18), transparent 55%),
+    radial-gradient(ellipse at 50% 65%, #32261f 0, transparent 65%);
+}
+
+.stage::after {
+  left: 50%;
+  top: calc(50% + var(--lamp-size) * .20);
+  width: calc(var(--lamp-size) * 1.65);
+  height: calc(var(--lamp-size) * .5);
+  transform: translateX(calc(-50% + var(--spill-x))) scaleX(var(--spill-width));
+  background: radial-gradient(ellipse, rgba(255, 180, 85, .34) 0%, rgba(239, 139, 49, .17) 30%, rgba(212, 114, 38, .05) 52%, transparent 72%);
+}
+
+.lamp {
+  position: relative;
+  z-index: 1;
+  width: min(550px, 86vw, 76svh);
+  aspect-ratio: 1241 / 1267;
+  filter: brightness(.7);
+}
+
+.photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: pan-y;
+  cursor: default;
+}
+
+.canvas:focus-visible { outline: 1px solid #bda18a; outline-offset: 4px; }
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
